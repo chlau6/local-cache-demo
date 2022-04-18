@@ -1,2 +1,2 @@
 # local-cache-demo
-demo of java local cache with data structure
+demo of local cache with java data structure
