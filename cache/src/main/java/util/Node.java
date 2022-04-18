@@ -39,7 +39,7 @@ public class Node {
         this.value = value;
     }
 
-    public void selfDelete() {
+    public void detachFromList() {
         Node prevNode = getPrev();
         Node nextNode = getNext();
 

@@ -23,7 +23,7 @@ public class LRUCache implements Cache {
         if (cache.containsKey(key)) {
             Node node = cache.get(key);
             node.setValue(value);
-            node.selfDelete();
+            node.detachFromList();
             doublyLinkedList.addFirst(node);
         } else {
             Node node = new Node(key, value);
@@ -39,7 +39,7 @@ public class LRUCache implements Cache {
         if (!cache.containsKey(key)) return "null"; // or implement your data loader
 
         Node node = cache.get(key);
-        node.selfDelete();
+        node.detachFromList();
         doublyLinkedList.addFirst(node);
 
         return node.getValue();
@@ -51,7 +51,7 @@ public class LRUCache implements Cache {
 
         Node node = cache.get(key);
         cache.remove(node.getKey());
-        node.selfDelete();
+        node.detachFromList();
 
         return true;
     }
