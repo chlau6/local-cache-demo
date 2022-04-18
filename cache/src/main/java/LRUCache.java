@@ -31,11 +31,7 @@ public class LRUCache implements Cache {
             doublyLinkedList.addFirst(node);
         }
 
-        if (getSize() > maxCapacity) {
-            Node oldNode = doublyLinkedList.getLast();
-            cache.remove(oldNode.getKey());
-            doublyLinkedList.removeLast();
-        }
+        removeLRUKey();
     }
 
     @Override
@@ -76,12 +72,29 @@ public class LRUCache implements Cache {
     }
 
     @Override
-    public void setMaxCapacity(int maxCapacity) {
-        this.maxCapacity = maxCapacity;
+    public void setMaxCapacity(int capacity) {
+        this.maxCapacity = capacity;
+
+        removeLRUKey();
     }
 
     @Override
     public String getCacheAlgorithm() {
         return this.algorithm.toString();
+    }
+
+    private void removeLRUKey() {
+        int currentSize = getSize();
+        int maxCapacity = getMaxCapacity();
+
+        if (currentSize <= maxCapacity) return;
+
+        int numOfLRUKey = currentSize - maxCapacity;
+
+        for (int i = 0; i < numOfLRUKey; i++) {
+            Node oldNode = doublyLinkedList.getLast();
+            cache.remove(oldNode.getKey());
+            doublyLinkedList.removeLast();
+        }
     }
 }

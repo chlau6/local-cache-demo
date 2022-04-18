@@ -19,5 +19,9 @@ public class LRUCacheTest {
 
         assertEquals("cherry", lruCache.get("Charlie"));
         assertEquals("durian", lruCache.get("David"));
+
+        lruCache.setMaxCapacity(1);
+        assertEquals("null", lruCache.get("Charlie"));
+        assertEquals("durian", lruCache.get("David"));
     }
 }
