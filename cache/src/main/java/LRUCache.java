@@ -14,7 +14,7 @@ public class LRUCache implements Cache {
     LRUCache(int maxCapacity) {
         this.cache = new HashMap<>();
         this.doublyLinkedList = new DoublyLinkedListImpl();
-        this.algorithm = CacheAlgorithm.LFU;
+        this.algorithm = CacheAlgorithm.LRU;
         this.maxCapacity = maxCapacity;
     }
 
